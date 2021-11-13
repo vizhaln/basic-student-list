@@ -1,0 +1,20 @@
+.tableAlignment {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  margin-top: 10px;
+}
+
+@media screen and (max-width: 1032px) {
+  .tableAlignment {
+    display: block;
+  }
+}
+
+.deleteIcon {
+  width: 20px;
+  margin-left: 5px;
+  cursor: pointer;
+}

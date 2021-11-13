@@ -1,0 +1,27 @@
+.FormGrid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  margin-top: 10px;
+}
+
+input[type="text" i] {
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #1d2d58;
+    border-radius: 2px;
+    margin-top: 10px;
+}
+
+button {
+    width: 320px;
+    padding: 10px;
+    border: 1px solid #1d2d58;
+    background-color: #1d2d58;
+    border-radius: 5px;
+    margin-top: 10px;
+    color: white;
+    height: 50px;
+}
