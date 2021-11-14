@@ -1,0 +1,33 @@
+.ViewGrid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  margin-top: 10px;
+}
+
+.paperWidth {
+  width: 35%;
+}
+
+@media screen and (max-width: 1032px) {
+  .ViewGrid {
+    display: block;
+  }
+
+  .paperWidth {
+    width: 100%;
+  }
+}
+
+.boldName {
+  font-weight: bold !important;
+}
+
+.backButton {
+  background-color: transparent;
+  border: none;
+  color: #1d2d58;
+  text-decoration: underline;
+}

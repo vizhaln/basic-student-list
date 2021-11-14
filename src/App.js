@@ -4,16 +4,21 @@ import "./App.css";
 import dataReq from "./data.json";
 import Table from "./Table";
 import Form from "./Form";
+import View from "./View";
 import addIcon from "./addIcon.png";
 
 function App() {
   const [data, setData] = useState(dataReq);
   const [studentData, setStudentData] = useState({});
   const [showTable, setTable] = useState(true);
+  const [showView, setView] = useState(false);
   const [newRegId, setNewRegId] = useState(dataReq.length + 1);
   const [newStudent, setNewStudent] = useState(false);
 
-  const homePage = () => setTable(true);
+  const homePage = () => {
+    setTable(true);
+    setView(false);
+  };
 
   const addNew = () => {
     setNewRegId(newRegId + 1);
@@ -27,9 +32,16 @@ function App() {
     setData(updatedData);
   };
 
+  const editStudent = (id) => {
+    data.filter((item) => item.regId === id && setStudentData(item));
+    setTable(false);
+    setView(false);
+  };
+
   const viewStudent = (id) => {
     data.filter((item) => item.regId === id && setStudentData(item));
     setTable(false);
+    setView(true);
   };
 
   const updateStudentData = (objectIndex, value) => {
@@ -67,18 +79,25 @@ function App() {
           </Grid>
         </Grid>
       </header>
-      {showTable && (
+      {showTable && !showView && (
         <Table
           rows={data}
           deleteStudent={deleteStudent}
           viewStudent={viewStudent}
         />
       )}
-      {!showTable && (
+      {!showTable && !showView && (
         <Form
           studentData={studentData}
           handleSubmitSuccess={handleSubmit}
           homePage={homePage}
+        />
+      )}
+      {!showTable && showView && (
+        <View
+          studentData={studentData}
+          homePage={homePage}
+          editStudent={editStudent}
         />
       )}
       <footer className="App-footer"></footer>

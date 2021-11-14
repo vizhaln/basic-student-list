@@ -309,10 +309,30 @@ export default function EnhancedTable(props) {
                       >
                         {row.name}
                       </TableCell>
-                      <TableCell align="right">{row.regId}</TableCell>
-                      <TableCell align="right">{row.mobile}</TableCell>
-                      <TableCell align="right">{row.birthday}</TableCell>
-                      <TableCell align="right">{row.location}</TableCell>
+                      <TableCell
+                        onClick={() => props.viewStudent(row.regId)}
+                        align="right"
+                      >
+                        {row.regId}
+                      </TableCell>
+                      <TableCell
+                        onClick={() => props.viewStudent(row.regId)}
+                        align="right"
+                      >
+                        {row.mobile}
+                      </TableCell>
+                      <TableCell
+                        onClick={() => props.viewStudent(row.regId)}
+                        align="right"
+                      >
+                        {row.birthday}
+                      </TableCell>
+                      <TableCell
+                        onClick={() => props.viewStudent(row.regId)}
+                        align="right"
+                      >
+                        {row.location}
+                      </TableCell>
                     </TableRow>
                   );
                 })}
