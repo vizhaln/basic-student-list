@@ -39,52 +39,60 @@ function Form(props) {
   };
 
   return (
-    <Grid container className="FormGrid">
-      <form>
-        <Grid item>
-          <input
-            type="text"
-            placeholder="name"
-            onChange={(e) => handleNameChange(e)}
-            value={nameValue}
-            ref={nameRef}
-          />
-        </Grid>
-        <Grid item>
-          <input type="text" placeholder="reg ID" value={regId} disabled />
-        </Grid>
-        <Grid item>
-          <input
-            type="text"
-            placeholder="mobile"
-            onChange={(e) => handleMobileChange(e)}
-            value={mobileValue}
-            ref={mobileRef}
-          />
-        </Grid>
-        <Grid item>
-          <input
-            type="text"
-            placeholder="birthday"
-            onChange={(e) => handleBirthdayChange(e)}
-            value={birthdayValue}
-            ref={birthdayRef}
-          />
-        </Grid>
-        <Grid item>
-          <input
-            type="text"
-            placeholder="location"
-            onChange={(e) => handleLocationChange(e)}
-            value={locationValue}
-            ref={locationRef}
-          />
-        </Grid>
-        <Grid item>
-          <button onClick={(e) => handleSubmit(e)}>Submit</button>
-        </Grid>
-      </form>
-    </Grid>
+    <>
+      <button onClick={() => props.homePage()} className="backButton">
+        {" "}
+        Go Back{" "}
+      </button>
+      <Grid container className="FormGrid">
+        <form>
+          <Grid item>
+            <input
+              type="text"
+              placeholder="name"
+              onChange={(e) => handleNameChange(e)}
+              value={nameValue}
+              ref={nameRef}
+            />
+          </Grid>
+          <Grid item>
+            <input type="text" placeholder="reg ID" value={regId} disabled />
+          </Grid>
+          <Grid item>
+            <input
+              type="text"
+              placeholder="mobile"
+              onChange={(e) => handleMobileChange(e)}
+              value={mobileValue}
+              ref={mobileRef}
+            />
+          </Grid>
+          <Grid item>
+            <input
+              type="text"
+              placeholder="birthday"
+              onChange={(e) => handleBirthdayChange(e)}
+              value={birthdayValue}
+              ref={birthdayRef}
+            />
+          </Grid>
+          <Grid item>
+            <input
+              type="text"
+              placeholder="location"
+              onChange={(e) => handleLocationChange(e)}
+              value={locationValue}
+              ref={locationRef}
+            />
+          </Grid>
+          <Grid item>
+            <button className="submitButton" onClick={(e) => handleSubmit(e)}>
+              Submit
+            </button>
+          </Grid>
+        </form>
+      </Grid>
+    </>
   );
 }
 

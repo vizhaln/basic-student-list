@@ -23,9 +23,9 @@ function App() {
   };
 
   const deleteStudent = (id) => {
-    const updatedData = data.filter(row => !id.includes(row.regId));
+    const updatedData = data.filter((row) => !id.includes(row.regId));
     setData(updatedData);
-  }
+  };
 
   const viewStudent = (id) => {
     data.filter((item) => item.regId === id && setStudentData(item));
@@ -51,16 +51,20 @@ function App() {
   return (
     <div>
       <header className="App-header">
-      <Grid container className="headerPadding">
-        <Grid item xs={6} onClick={() => homePage()}>Student Details</Grid>
-        <Grid item xs={6} className="alignItemsRight">
-          <img
-            src={addIcon}
-            className="AddIcon"
-            alt=""
-            onClick={() => addNew()}
-          />
-        </Grid>
+        <Grid container className="headerPadding">
+          <Grid item xs={6} onClick={() => homePage()}>
+            Student Details
+          </Grid>
+          <Grid item xs={6} className="alignItemsRight">
+            {showTable && (
+              <img
+                src={addIcon}
+                className="AddIcon"
+                alt=""
+                onClick={() => addNew()}
+              />
+            )}
+          </Grid>
         </Grid>
       </header>
       {showTable && (
@@ -71,7 +75,11 @@ function App() {
         />
       )}
       {!showTable && (
-        <Form studentData={studentData} handleSubmitSuccess={handleSubmit} />
+        <Form
+          studentData={studentData}
+          handleSubmitSuccess={handleSubmit}
+          homePage={homePage}
+        />
       )}
       <footer className="App-footer"></footer>
     </div>

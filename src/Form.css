@@ -15,7 +15,7 @@ input[type="text" i] {
     margin-top: 10px;
 }
 
-button {
+.submitButton {
     width: 320px;
     padding: 10px;
     border: 1px solid #1d2d58;
@@ -24,4 +24,11 @@ button {
     margin-top: 10px;
     color: white;
     height: 50px;
+}
+
+.backButton {
+  background-color: transparent;
+  border: none;
+  color: #1d2d58;
+  text-decoration: underline;
 }
