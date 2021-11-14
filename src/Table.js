@@ -136,7 +136,7 @@ EnhancedTableHead.propTypes = {
 };
 
 const EnhancedTableToolbar = (props) => {
-  const { numSelected, deleteStudent, selected } = props;
+  const { numSelected, deleteStudent, selected, handleDeletedData } = props;
 
   return (
     <Toolbar
@@ -174,7 +174,10 @@ const EnhancedTableToolbar = (props) => {
 
       {numSelected > 0 ? (
         <img
-          onClick={() => deleteStudent(selected)}
+          onClick={() => {
+            deleteStudent(selected);
+            handleDeletedData();
+          }}
           src={deleteIcon}
           className="deleteIcon"
           alt=""
@@ -205,12 +208,14 @@ export default function EnhancedTable(props) {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelecteds = props.rows.map((n) => n.name);
+      const newSelecteds = props.rows.map((n) => n.regId);
       setSelected(newSelecteds);
       return;
     }
     setSelected([]);
   };
+
+  const handleDeletedData = () => setSelected([]);
 
   const handleClick = (event, regId) => {
     const selectedIndex = selected.indexOf(regId);
@@ -253,6 +258,7 @@ export default function EnhancedTable(props) {
           numSelected={selected.length}
           deleteStudent={props.deleteStudent}
           selected={selected}
+          handleDeletedData={handleDeletedData}
         />
         <TableContainer>
           <Table

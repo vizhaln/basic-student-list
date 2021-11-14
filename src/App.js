@@ -22,8 +22,10 @@ function App() {
     setNewStudent(true);
   };
 
-  const deleteStudent = (id) =>
-    id.map((del) => setData(data.filter((item) => item.regId !== del)));
+  const deleteStudent = (id) => {
+    const updatedData = data.filter(row => !id.includes(row.regId));
+    setData(updatedData);
+  }
 
   const viewStudent = (id) => {
     data.filter((item) => item.regId === id && setStudentData(item));
