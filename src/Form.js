@@ -21,7 +21,10 @@ function FormComponent(props) {
 
   const handleNameChange = (e) => setName(e.target.value);
   const handleMobileChange = (e) => {
-    setMobile(e.target.value);
+    const re = /^[0-9\b]+$/;
+    if (e.target.value === '' || re.test(e.target.value)) {
+      setMobile(e.target.value);
+    }
     if (e.target.value.length > 10) setError(true);
     else setError(false);
   };
@@ -69,7 +72,7 @@ function FormComponent(props) {
           </Grid>
           <Grid item className="inputProp">
             <TextField
-              type="number"
+              type="text"
               error={isError}
               value={mobileValue}
               onChange={(e) => handleMobileChange(e)}
@@ -84,7 +87,8 @@ function FormComponent(props) {
           </Grid>
           <Grid item className="inputProp">
             <TextField
-              type="text"
+              type="date"
+              InputLabelProps={{ shrink: true }}
               value={birthdayValue}
               onChange={(e) => handleBirthdayChange(e)}
               className="inputWidth"
