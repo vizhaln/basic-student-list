@@ -6,6 +6,8 @@ import Table from "./Table";
 import Form from "./Form";
 import View from "./View";
 import addIcon from "./addIcon.png";
+import Button from '@material-ui/core/Button';
+import Snackbar from '@material-ui/core/Snackbar';
 
 function App() {
   const [data, setData] = useState(dataReq);
@@ -15,9 +17,32 @@ function App() {
   const [newRegId, setNewRegId] = useState(dataReq.length + 1);
   const [newStudent, setNewStudent] = useState(false);
 
+  const [open, setOpen] = React.useState(false);
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  const action = (
+    <React.Fragment>
+      <Button color="secondary" size="small" onClick={handleClose}>
+        CLOSE
+      </Button>
+    </React.Fragment>
+  );
+
   const homePage = () => {
     setTable(true);
     setView(false);
+    setNewStudent(false);
   };
 
   const addNew = () => {
@@ -58,6 +83,7 @@ function App() {
     newStudent && setStudentData(data.push(value));
     setNewStudent(false);
     setTable(true);
+    handleClick();
   };
 
   return (
@@ -91,6 +117,7 @@ function App() {
           studentData={studentData}
           handleSubmitSuccess={handleSubmit}
           homePage={homePage}
+          newStudent={newStudent}
         />
       )}
       {!showTable && showView && (
@@ -100,6 +127,13 @@ function App() {
           editStudent={editStudent}
         />
       )}
+      <Snackbar
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        message={newStudent ? "ADDED SUCCESSFULLY" : "UPDATED SUCCESSFULLY"}
+        action={action}
+      />
       <footer className="App-footer"></footer>
     </div>
   );

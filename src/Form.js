@@ -5,7 +5,7 @@ import "./Form.css";
 import InputAdornment from "@material-ui/core/InputAdornment";
 
 function FormComponent(props) {
-  const { studentData, handleSubmitSuccess } = props;
+  const { studentData, handleSubmitSuccess, newStudent } = props;
   const {
     name = "",
     regId = "",
@@ -37,7 +37,7 @@ function FormComponent(props) {
       birthday: birthdayValue,
       location: locationValue,
     };
-    handleSubmitSuccess(value);
+    nameValue !== "" && !isError && handleSubmitSuccess(value);
   };
 
   return (
@@ -102,7 +102,7 @@ function FormComponent(props) {
           </Grid>
           <Grid item>
             <button className="submitButton" onClick={(e) => handleSubmit(e)}>
-              Submit
+              {newStudent ? "Add Student" : "Update"}
             </button>
           </Grid>
         </form>
