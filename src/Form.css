@@ -7,12 +7,14 @@
   margin-top: 10px;
 }
 
-input[type="text" i] {
+input[type="text" i], .inputProp {
     width: 300px;
-    padding: 10px;
-    border: 1px solid #1d2d58;
-    border-radius: 2px;
-    margin-top: 10px;
+    padding: 10px !important;
+    margin-top: 5px;
+}
+
+.inputWidth {
+  width: 300px;
 }
 
 .submitButton {

@@ -33,15 +33,6 @@ function View(props) {
               size="medium"
             >
               <TableBody>
-                <TableRow align="right">
-                    <button
-                      onClick={() => props.editStudent(regId)}
-                      className="backButton"
-                    >
-                      {" "}
-                      Edit{" "}
-                    </button>
-                </TableRow>
                 <TableRow>
                   <TableCell className="boldName">Name</TableCell>
                   <TableCell align="right">{name}</TableCell>
@@ -65,6 +56,13 @@ function View(props) {
               </TableBody>
             </Table>
           </TableContainer>
+          <button
+            onClick={() => props.editStudent(regId)}
+            className="editButton"
+          >
+            {" "}
+            Edit Details{" "}
+          </button>
         </Paper>
       </Box>
     </>

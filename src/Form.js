@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Grid from "@material-ui/core/Grid";
+import TextField from "@material-ui/core/TextField";
 import "./Form.css";
+import InputAdornment from "@material-ui/core/InputAdornment";
 
-function Form(props) {
+function FormComponent(props) {
   const { studentData, handleSubmitSuccess } = props;
   const {
     name = "",
@@ -15,25 +17,25 @@ function Form(props) {
   const [mobileValue, setMobile] = useState(mobile);
   const [birthdayValue, setBirthday] = useState(birthday);
   const [locationValue, setLocation] = useState(location);
+  const [isError, setError] = useState(false);
 
   const handleNameChange = (e) => setName(e.target.value);
-  const handleMobileChange = (e) => setMobile(e.target.value);
+  const handleMobileChange = (e) => {
+    setMobile(e.target.value);
+    if (e.target.value.length > 10) setError(true);
+    else setError(false);
+  };
   const handleBirthdayChange = (e) => setBirthday(e.target.value);
   const handleLocationChange = (e) => setLocation(e.target.value);
-
-  const nameRef = React.useRef();
-  const mobileRef = React.useRef();
-  const birthdayRef = React.useRef();
-  const locationRef = React.useRef();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const value = {
-      name: nameRef.current.value,
+      name: nameValue,
       regId: regId,
-      mobile: mobileRef.current.value,
-      birthday: birthdayRef.current.value,
-      location: locationRef.current.value,
+      mobile: mobileValue,
+      birthday: birthdayValue,
+      location: locationValue,
     };
     handleSubmitSuccess(value);
   };
@@ -46,43 +48,56 @@ function Form(props) {
       </button>
       <Grid container className="FormGrid">
         <form>
-          <Grid item>
-            <input
+          <Grid item className="inputProp">
+            <TextField
               type="text"
-              placeholder="name"
-              onChange={(e) => handleNameChange(e)}
               value={nameValue}
-              ref={nameRef}
+              onChange={(e) => handleNameChange(e)}
+              className="inputWidth"
+              required
+              label="Name"
             />
           </Grid>
-          <Grid item>
-            <input type="text" placeholder="reg ID" value={regId} disabled />
-          </Grid>
-          <Grid item>
-            <input
+          <Grid item className="inputProp">
+            <TextField
               type="text"
-              placeholder="mobile"
-              onChange={(e) => handleMobileChange(e)}
+              value={regId}
+              className="inputWidth"
+              disabled
+              label="Reg ID"
+            />
+          </Grid>
+          <Grid item className="inputProp">
+            <TextField
+              type="number"
+              error={isError}
               value={mobileValue}
-              ref={mobileRef}
+              onChange={(e) => handleMobileChange(e)}
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">+91</InputAdornment>
+                ),
+              }}
+              className="inputWidth"
+              label="Mobile"
             />
           </Grid>
-          <Grid item>
-            <input
+          <Grid item className="inputProp">
+            <TextField
               type="text"
-              placeholder="birthday"
-              onChange={(e) => handleBirthdayChange(e)}
               value={birthdayValue}
-              ref={birthdayRef}
+              onChange={(e) => handleBirthdayChange(e)}
+              className="inputWidth"
+              label="Date of Birth"
             />
           </Grid>
-          <Grid item>
-            <input
+          <Grid item className="inputProp">
+            <TextField
               type="text"
-              placeholder="location"
-              onChange={(e) => handleLocationChange(e)}
               value={locationValue}
-              ref={locationRef}
+              onChange={(e) => handleLocationChange(e)}
+              className="inputWidth"
+              label="Location"
             />
           </Grid>
           <Grid item>
@@ -96,4 +111,4 @@ function Form(props) {
   );
 }
 
-export default Form;
+export default FormComponent;

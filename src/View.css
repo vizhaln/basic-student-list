@@ -31,3 +31,13 @@
   color: #1d2d58;
   text-decoration: underline;
 }
+
+.editButton {
+  background-color: transparent;
+  border: none;
+  color: #1d2d58;
+  text-decoration: underline;
+  font-style: italic;
+  padding: 10px;
+  margin-top: 5px;
+}
